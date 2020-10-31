@@ -3,7 +3,7 @@ fn main() {
 
     let result = loop {
         counter += 1;
-        if counter == 10 {
+        if counter ^ 3 == 0 {
             break counter * 2;
         }
     };
