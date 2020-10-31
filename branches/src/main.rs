@@ -1,10 +1,16 @@
 fn main() {
-    let number = 3;
+    let number = 6;
 
-    if number < 5 {
-        println!("Condition was true");
+    if number % 4 == 0 {
+        println!("The number was divisible by 4.");
+    }
+    else if number % 3 == 0 {
+        println!("The number was divisible by 3.");
+    }
+    else if number % 2 == 0 {
+        println!("The number was divisible by 2.");
     }
     else {
-        println!("Condition was false");
+        println!("The number was not divisible by 4,3, or 2.");
     }
 }
