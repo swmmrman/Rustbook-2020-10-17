@@ -1,5 +1,5 @@
 fn do_day(day: i32) {
-    println!("On the {} of Christmas my true love gave to me:", day);
+    println!("On the {} of Christmas my true love gave to me:", convert_day(day));
     let mut out: String = "".to_string();
     for count in (1..(day+1)).rev() {
         let text = match count {
@@ -21,6 +21,24 @@ fn do_day(day: i32) {
         out.push_str(".\n");
     }
     println!("{}",out);
+}
+
+fn convert_day(day: i32) -> String {
+    match day {
+        1 => "first",
+        2 => "second",
+        3 => "third",
+        4 => "fourth",
+        5 => "fifth",
+        6 => "sixth",
+        7 => "seventh",
+        8 => "eighth",
+        9 => "ninth",
+        10 => "tenth",
+        11 => "eleventh",
+        12 => "twelfth",
+        _ => "Invalid",
+    }.to_string()
 }
 
 fn main() {
