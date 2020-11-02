@@ -1,11 +1,10 @@
 fn main() {
-    let mut number: i64 = 0x7FFFFFFFFFFFFFFF;
+    let a = [10, 20 , 30, 40, 50];
+    let mut index = 0;
 
-    while !number != 0 {
-        println!("{:064b}!", number);
-        number -= 1;
-        let wait = std::time::Duration::from_millis(1);
-        std::thread::sleep(wait);
+    while index < 5 {
+        println!("The value is: {}", a[index]);
+
+        index += 1;
     }
-    println!("Liftoff!!!");
 }
