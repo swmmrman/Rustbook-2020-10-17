@@ -7,10 +7,16 @@ fn convert_to_f(temp_c:f32) -> f32 {
 }
 
 fn main() {
-    let temp_f = 212.0;
-    let temp_c = convert_to_c(temp_f);
-    println!("{}f is {}c", temp_f, temp_c);
-    let temp_c = 100.0;
-    let temp_f = convert_to_f(temp_c);
-    println!("{}c is {}f", temp_c, temp_f);
+    let args: Vec<String> = std::env::args().collect();
+    let &temp = &args[2].parse().unwrap();
+    let switch = &args[1][0..];
+    match switch {
+        "-c" => {
+            println!("Result {}c", convert_to_c(temp));
+        },
+        "-f" => {
+            println!("Result {}f", convert_to_f(temp));
+        },
+        _ => println!("No conversion specified"),
+    }
 }
