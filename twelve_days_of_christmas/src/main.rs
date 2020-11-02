@@ -18,7 +18,7 @@ fn do_day(day: i32) {
             _ => "To many days, Bonk to the head",
         };
         out.push_str(text);
-        out.push_str(".\n");
+        out.push_str("\n");
     }
     println!("{}",out);
 }
