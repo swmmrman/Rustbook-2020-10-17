@@ -4,18 +4,18 @@ fn do_day(day: i32) {
     for count in (1..(day+1)).rev() {
         let text = match count {
             1 => "A partidge in a pear tree.",
-            2 => "2 turtle doves, and",
-            3 => "3 French Hens",
-            4 => "4 Calling Birds",
-            5 => "5 Golden Ring",
-            6 => "6 Geese a-laying",
-            7 => "7 Sawns a-swimming",
-            8 => "8 Maids a-milking",
-            9 => "9 Ladies daning",
-            10 => "10 Lords a-leaping",
-            11 => "11 Pipers piping",
-            12 => "12 Drummers drumming",
-            _ => "To many days, Bonk to the head.",
+            2 => "Two Turtle Doves, and",
+            3 => "Three French Hens",
+            4 => "Four Calling Birds",
+            5 => "Five Golden Ring",
+            6 => "Six Geese a-laying",
+            7 => "Seven Sawns a-swimming",
+            8 => "Eight Maids a-milking",
+            9 => "Nine Ladies daning",
+            10 => "Ten Lords a-leaping",
+            11 => "Elven Pipers piping",
+            12 => "Twelve Drummers drumming",
+            _ => "To many days, Bonk to the head",
         };
         out.push_str(text);
         out.push_str(".\n");
