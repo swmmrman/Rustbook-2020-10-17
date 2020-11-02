@@ -1,3 +1,4 @@
 hello_world/main
 */target/
 *Cargo.lock
+*/*/target
