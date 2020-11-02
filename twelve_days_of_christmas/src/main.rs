@@ -10,10 +10,15 @@ fn do_day(day: i32) {
             5 => "5 Golden Ring",
             6 => "6 Geese a-laying",
             7 => "7 Sawns a-swimming",
-            _ => "Invalid day, Bonk to the head.",
+            8 => "8 Maids a-milking",
+            9 => "9 Ladies daning",
+            10 => "10 Lords a-leaping",
+            11 => "11 Pipers piping",
+            12 => "12 Drummers drumming",
+            _ => "To many days, Bonk to the head.",
         };
         out.push_str(text);
-        out.push_str("\n");
+        out.push_str(".\n");
     }
     println!("{}",out);
 }
