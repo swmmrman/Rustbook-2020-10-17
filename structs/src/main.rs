@@ -36,4 +36,12 @@ fn main() {
     };
     println!("Can rect1 hold rect2? {}", rect1.can_hold(&rect2));
     println!("Can rect1 hold rect3? {}", rect1.can_hold(&rect3));
+    rect1.multiply_sides(2);
+    println!("Can a doubled rect1 hold rect3? {}", rect1.can_hold(&rect3));
+    rect1.double_sides();
+    println!(
+        "What if we double again? {},  The area is now {}",
+        rect1.can_hold(&rect3),
+        rect1.area(),
+    );
 }
