@@ -23,20 +23,5 @@ fn main() {
         width:30,
         height:50,
     };
-    println!(
-        "The area of the rectangle is {} pixels squared.",
-        rect.area()
-    );
-    rect.double_sides();
-    println!(
-        "The area of the rectangle is {} pixels squared.",
-        rect.area()
-    );
-    println!("rect is {:?}", rect);
-    rect.multiply_sides(5);
-    println!(
-        "The area of the rectangle is {} pixels squared.",
-        rect.area()
-    );
-    println!("rect is {:?}", rect);
+
 }
