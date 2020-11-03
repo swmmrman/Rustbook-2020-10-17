@@ -12,6 +12,10 @@ impl Rectangle {
         self.width *= 2;
         self.height *= 2;
     }
+    fn multiply_sides(&mut self, multi: u32) {
+        self.width *= multi;
+        self.height *= multi;
+    }
 }
 
 fn main() {
@@ -24,6 +28,12 @@ fn main() {
         rect.area()
     );
     rect.double_sides();
+    println!(
+        "The area of the rectangle is {} pixels squared.",
+        rect.area()
+    );
+    println!("rect is {:?}", rect);
+    rect.multiply_sides(5);
     println!(
         "The area of the rectangle is {} pixels squared.",
         rect.area()
