@@ -13,5 +13,5 @@ pub fn eat_at_restaurant() {
     crate::front_of_house::hosting::add_to_waitlist();
 
     // Relative version
-    front_of_house::hosting::add_to_waitlist();1
+    front_of_house::hosting::add_to_waitlist();
 }
