@@ -4,7 +4,6 @@ mod front_of_house {
     }
     mod serving {
         fn take_order() {}
-        fn serve_order() {}
         fn take_payment() {}
     }
 }
@@ -14,4 +13,13 @@ pub fn eat_at_restaurant() {
 
     // Relative version
     front_of_house::hosting::add_to_waitlist();
+}
+
+fn serve_order() {}
+mod back_of_house {
+    fn fix_incorrect_order() {
+        cook_order();
+        super::serve_order();
+    }
+    fn cook_order() {}
 }
