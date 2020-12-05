@@ -22,6 +22,10 @@ mod back_of_house {
             }
         }
     }
+    pub enum Appetizer {
+        Soup,
+        Salad,
+    }
     fn fix_incorrect_order() {
         cook_order();
         super::serve_order();
@@ -30,6 +34,9 @@ mod back_of_house {
 }
 
 pub fn eat_at_restaurant() {
+    //Appetizers
+    let order1 = back_of_house::Appetizer::Soup;
+    let order2 = back_of_house::Appetizer::Salad;
     // Order with Rye
     let mut meal = back_of_house::Breakfast::summer("Rye");
     // Change mind to Wheat
