@@ -12,7 +12,7 @@ fn main() {
     }
     let mut ordered = integers.to_vec();
     ordered.sort();
-    println!("The integers are:{:?}\n\n", integers);
+    //println!("The integers are:{:?}\n\n", integers);
     let mean = sum / len;
     let mid = len/2;
     let median = ordered[mid];
