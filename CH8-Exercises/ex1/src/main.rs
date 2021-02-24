@@ -6,7 +6,11 @@ fn main() {
         len += 1;
         sum += i;
     }
+    let mut ordered = integers.to_vec();
+    ordered.sort();
     println!("The integers are:{:?}\n\n", integers);
     let mean = sum / len;
-    println!("Sum = {}, length = {}, Mean = {}", sum, len, mean);
+    let mid = len/2;
+    let median = ordered[mid];
+    println!("Sum = {}, length = {}, Mean = {}, Median = {:?}", sum, len, mean, median);
 }
