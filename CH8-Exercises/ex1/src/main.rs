@@ -8,5 +8,5 @@ fn main() {
     }
     println!("The integers are:{:?}\n\n", integers);
     let mean = sum / len;
-    println!("Sum = {}, length = {}, Average = {}", sum, len, mean);
+    println!("Sum = {}, length = {}, Mean = {}", sum, len, mean);
 }
