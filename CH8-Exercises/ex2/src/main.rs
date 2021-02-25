@@ -15,15 +15,16 @@ fn mutate(word: &str) -> String {
 }
 
 fn main() {
-    let args: Vec<String> = env::args().collect();
-    if args.len() > 2 {
+    let args: Vec<String> = env::args().collect();  // Extract CLI args.
+    if args.len() > 2 {                             // Check for more then one arg.
         println!("Please wrap you sentence in quotes. Ex. \"This way\"");
-        process::exit(1);
+        process::exit(1);                           // Exit if so.
     }
-    let sentence = &args[1];
-    let mut newsentence = String::new();
-    for word in sentence.split(" ") {
+    let sentence = &args[1];                        // Store the args in the sentence variable.
+    let mut newsentence = String::new();            // Storage for the results.
+    for word in sentence.split(" ") {               // Iterate over the sentence appending.
         newsentence = format!("{} {}",&newsentence, mutate(&word));
     }
-    println!("{}", newsentence);
+    println!("{}", &newsentence[1..]);              // Print the final line omiting the now empty
+                                                    // first character.
 }
