@@ -1,3 +1,5 @@
+use std::{env,process};
+
 fn mutate(word: &str) -> String {
     let vowels = vec!["a", "e", "i", "o", "u", "y"];
     let small = word.to_lowercase();        // Change string to lowercase.
@@ -13,7 +15,12 @@ fn mutate(word: &str) -> String {
 }
 
 fn main() {
-    let sentence = "I wrote a thing";
+    let args: Vec<String> = env::args().collect();
+    if args.len() > 2 {
+        println!("Please wrap you sentence in quotes. Ex. \"This way\"");
+        process::exit(1);
+    }
+    let sentence = &args[1];
     let mut newsentence = String::new();
     for word in sentence.split(" ") {
         newsentence = format!("{} {}",&newsentence, mutate(&word));
