@@ -15,15 +15,20 @@ fn main() {
 }
 
 struct Config {
+    _binary_name: String,
     query: String,
     file_name: String,
 }
 
 impl Config {
     fn new(args: &[String]) -> Config {
+        if args.len() < 3 {
+            panic!("Usage: {} \"search term\" file_name", args[0])
+        }
+        let _binary_name = args[0].clone();
         let query = args[1].clone();
         let file_name = args[2].clone();
 
-        Config {query, file_name}
+        Config {_binary_name, query, file_name}
     }
 }
