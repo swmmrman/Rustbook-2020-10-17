@@ -4,7 +4,7 @@ fn main() {
     let args: Vec<String> = env::args().collect();
 
     let config = Config::new(&args).unwrap_or_else(|err| {
-        println!("{}", err);
+        println!("{}", err); //Now i can just print the error here.
         process::exit(1);
     });
     println!("Hunting for \"{}\" in {}", config.query, config.file_name);
@@ -23,8 +23,9 @@ struct Config {
 }
 
 impl Config {
-    fn new(args: &[String]) -> Result<Config, String> {
+    fn new(args: &[String]) -> Result<Config, String> { //Had to change te type
         if args.len() < 3 {
+            //Returning an completed error here, allows keeping all the logic here.
             return Err(format!("Usage: {} \"search term\" file_name", args[0]));
         }
         let _binary_name = args[0].clone();
