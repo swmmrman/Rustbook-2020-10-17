@@ -9,7 +9,7 @@ fn main() {
         println!("{}", err); //Now i can just print the error here.
         process::exit(1);
     });
-    println!("Huntin for \"{}\" in {}", config.query, config.file_name);
+    println!("Hunting for \"{}\" in {}", config.query, config.file_name);
     if let Err(e) = minigrep::run(config){
         print!("File error: {}", e);
 
