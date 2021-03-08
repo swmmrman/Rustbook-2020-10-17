@@ -5,7 +5,10 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
     let text = fs::read_to_string(config.file_name)?;
     let results = search(&config.query, &text);
 
-    println!("With text:\n{:?}", results);
+    for result in results {
+        println!("{}", result);
+    }
+
     Ok(())
 }
 
