@@ -1,9 +1,14 @@
 use std::error::Error;
-use std::fs;
+use std::{fs,env};
 
 pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
     let text = fs::read_to_string(config.file_name)?;
-    let results = search(&config.query, &text);
+    let results = if config.case_sensitive {
+        search(&config.query, &text)
+    }
+    else {
+        search_case_insensitive(&config.query, &text)
+    };
 
     for result in results {
         println!("{}", result);
