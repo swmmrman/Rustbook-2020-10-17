@@ -42,6 +42,7 @@ pub struct Config {
     _binary_name: String,
     pub query: String,
     pub file_name: String,
+    pub case_sensitive: bool,
 }
 
 impl Config {
@@ -53,8 +54,14 @@ impl Config {
         let _binary_name = args[0].clone();
         let query = args[1].clone();
         let file_name = args[2].clone();
+        let case_sensitive = env::var("CASE_INSENSITIVE").is_err();
 
-        Ok(Config {_binary_name, query, file_name})
+        Ok(Config{
+            _binary_name,
+            query,
+            file_name,
+            case_sensitive,
+        })
     }
 }
 
