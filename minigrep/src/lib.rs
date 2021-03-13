@@ -31,8 +31,7 @@ pub fn search_case_insensitive<'a>(
     let smallq = query.to_lowercase();
 
     for line in contents.lines() {
-        let small = line.to_lowercase();
-        if small.contains(&smallq) {
+        if line.to_lowercase().contains(&smallq) {
             results.push(line);
         }
     }
