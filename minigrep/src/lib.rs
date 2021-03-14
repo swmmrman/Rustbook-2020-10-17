@@ -65,8 +65,8 @@ impl Config {
         let case_sensitive = env::var("CASE_INSENSITIVE").is_err();
 
         //Returning a completed error here, allows keeping all the logic here.
-        if count < 3 {
-            return Err(format!("\nUsage: {} {} {}",
+        if count < 3 {  //If the count is less then 3.  We have an error.
+            return Err(format!("\nUsage: {} {} {}", //This is the usage errors I expect.
                 &binary_name,
                 &query,
                 &file_name ,
