@@ -44,7 +44,6 @@ pub fn search_case_insensitive<'a>(
 }
 
 pub struct Config {
-    _binary_name: String,
     pub query: String,
     pub file_name: String,
     pub case_sensitive: bool,
@@ -53,7 +52,7 @@ pub struct Config {
 impl Config {
     pub fn new(mut args: env::Args) -> Result<Config, String> { //Had to change te type
         let count = args.len();  //Grab the # of args here before using the iterator.
-        let _binary_name = args.next().unwrap(); //Store binary name for error.
+        let binary_name = args.next().unwrap(); //Store binary name for error.
 
         let query = match args.next() {
             Some(arg) => arg,
@@ -68,13 +67,12 @@ impl Config {
         //Returning a completed error here, allows keeping all the logic here.
         if count < 3 {
             return Err(format!("\nUsage: {} {} {}",
-                &_binary_name,
+                &binary_name,
                 &query,
                 &file_name ,
             ));
         }
         Ok(Config{
-            _binary_name,
             query,
             file_name,
             case_sensitive,
