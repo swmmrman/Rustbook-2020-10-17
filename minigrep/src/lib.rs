@@ -56,6 +56,7 @@ impl Config {
             //Returning an completed error here, allows keeping all the logic here.
             return Err(format!("Usage: {} \"search term\" file_name", args[0]));
         }
+    pub fn new(mut args: env::Args) -> Result<Config, String> { //Had to change te type
         let _binary_name = args.next().unwrap(); //Store binary name for error.
         let query = match args.next() {
             Some(arg) => arg,
