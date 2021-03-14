@@ -56,9 +56,15 @@ impl Config {
             //Returning an completed error here, allows keeping all the logic here.
             return Err(format!("Usage: {} \"search term\" file_name", args[0]));
         }
-        let _binary_name = args[0].clone();
-        let query = args[1].clone();
-        let file_name = args[2].clone();
+        let _binary_name = args.next().unwrap(); //Store binary name for error.
+        let query = match args.next() {
+            Some(arg) => arg,
+            None => "\"query\"".to_string(),
+        };
+        let file_name = match args.next() {
+            Some(arg) => arg,
+            None => "\"file name\"".to_string(),
+        };
         let case_sensitive = env::var("CASE_INSENSITIVE").is_err();
 
         Ok(Config{
