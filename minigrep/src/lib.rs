@@ -51,13 +51,10 @@ pub struct Config {
 }
 
 impl Config {
-    pub fn new(args: &[String]) -> Result<Config, String> { //Had to change te type
-        if args.len() < 3 {
-            //Returning an completed error here, allows keeping all the logic here.
-            return Err(format!("Usage: {} \"search term\" file_name", args[0]));
-        }
     pub fn new(mut args: env::Args) -> Result<Config, String> { //Had to change te type
+        let count = args.len();  //Grab the # of args here before using the iterator.
         let _binary_name = args.next().unwrap(); //Store binary name for error.
+
         let query = match args.next() {
             Some(arg) => arg,
             None => "\"query\"".to_string(),
@@ -68,6 +65,14 @@ impl Config {
         };
         let case_sensitive = env::var("CASE_INSENSITIVE").is_err();
 
+        //Returning a completed error here, allows keeping all the logic here.
+        if count < 3 {
+            return Err(format!("\nUsage: {} {} {}",
+                &_binary_name,
+                &query,
+                &file_name ,
+            ));
+        }
         Ok(Config{
             _binary_name,
             query,
