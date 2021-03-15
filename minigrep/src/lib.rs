@@ -18,29 +18,22 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
 }
 
 pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
-    let mut results = Vec::new();
-
-    for line in contents.lines() {
-        if line.contains(query) {
-            results.push(line);
-        }
-    }
-    results
+    contents
+        .lines()
+        .filter(|line| line.contains(query))
+        .collect()
 }
 
 pub fn search_case_insensitive<'a>(
     query: &str,
     contents: &'a str
 ) -> Vec<&'a str> {
-    let mut results = Vec::new();
     let smallq = query.to_lowercase();
 
-    for line in contents.lines() {
-        if line.to_lowercase().contains(&smallq) {
-            results.push(line);
-        }
-    }
-    results
+    contents
+        .lines()
+        .filter(|line| line.to_lowercase().contains(&smallq))
+        .collect()
 }
 
 pub struct Config {
