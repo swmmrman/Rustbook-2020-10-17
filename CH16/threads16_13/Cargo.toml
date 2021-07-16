@@ -1,5 +1,5 @@
 [package]
-name = "Threads16_13"
+name = "threads16_13"
 version = "0.1.0"
 edition = "2018"
 
