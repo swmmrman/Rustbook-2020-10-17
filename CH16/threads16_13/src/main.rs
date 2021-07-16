@@ -1,5 +1,5 @@
 use std::sync::{Arc,Mutex};
-use std::thread;
+use std::{thread, time};
 
 fn check_prime(number: i32) -> bool {
     let mut prime = true;
@@ -32,8 +32,12 @@ fn main() {
             *cur_index += 1;
         });
         threads.push(handle);
+        while threads.len() > 15{
+            let th = threads.pop().unwrap();
+            th.join().unwrap();
+        }
     }
-    for thread in threads {
-        thread.join();
+    for th in threads {
+        th.join().unwrap();
     }
 }
