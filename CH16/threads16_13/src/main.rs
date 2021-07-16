@@ -33,7 +33,7 @@ fn main() {
         });
         threads.push(handle);
     }
-    for thread in threads:
+    for thread in threads {
         thread.join();
     }
 }
