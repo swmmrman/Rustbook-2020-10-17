@@ -12,7 +12,7 @@ fn check_prime(number: i32) -> bool {
 }
 
 fn main() {
-    let max = 4000;
+    let max = 100000;
     let pool: Arc<Vec<i32>> = Arc::new((1..max).collect());
     let index = Arc::new(Mutex::new(0));
     //let primes = Mutex::new(vec![]);
