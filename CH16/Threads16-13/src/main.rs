@@ -17,12 +17,17 @@ fn main() {
     //let primes = Mutex::new(vec![]);
     let mut threads = vec![];
 
-    for i in 0..10 {
+    for _ in 0..10 {
         let handle = thread::spawn(move || {
             let mut curIndex = index.lock().unwrap();
-            
-            *curIndex++;
-
-        })
+            let num = pool[*curIndex];
+            if num % 2 != 0 {
+                if checkPrime(num) {
+                    println!("{} is prime", num);
+                }
+            }
+            *curIndex += 1;
+        });
+        threads.push(handle);
     }
 }
