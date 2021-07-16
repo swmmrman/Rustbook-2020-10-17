@@ -1,4 +1,4 @@
-use std::sync::Mutex;
+use std::sync::{Arc,Mutex};
 use std::thread;
 
 fn checkPrime(number: i32) -> bool {
@@ -13,11 +13,12 @@ fn checkPrime(number: i32) -> bool {
 
 fn main() {
     let pool = [1,2,3,4,5,6,7,8,9,10];
-    let index = Mutex::new(0);
+    let index = Arc::new(Mutex::new(0));
     //let primes = Mutex::new(vec![]);
     let mut threads = vec![];
 
     for _ in 0..10 {
+        let index = Arc::clone(&index);
         let handle = thread::spawn(move || {
             let mut curIndex = index.lock().unwrap();
             let num = pool[*curIndex];
