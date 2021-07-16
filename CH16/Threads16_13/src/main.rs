@@ -1,7 +1,7 @@
 use std::sync::{Arc,Mutex};
 use std::thread;
 
-fn checkPrime(number: i32) -> bool {
+fn check_prime(number: i32) -> bool {
     let mut prime = true;
     for i in 3..number+1 {
         if number / i == 0 {
@@ -20,14 +20,14 @@ fn main() {
     for _ in 0..10 {
         let index = Arc::clone(&index);
         let handle = thread::spawn(move || {
-            let mut curIndex = index.lock().unwrap();
-            let num = pool[*curIndex];
+            let mut cur_index = index.lock().unwrap();
+            let num = pool[*cur_index];
             if num % 2 != 0 {
-                if checkPrime(num) {
+                if check_prime(num) {
                     println!("{} is prime", num);
                 }
             }
-            *curIndex += 1;
+            *cur_index += 1;
         });
         threads.push(handle);
     }
