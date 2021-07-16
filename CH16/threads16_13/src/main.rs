@@ -1,5 +1,5 @@
 use std::sync::{Arc,Mutex};
-use std::{thread, time};
+use std::thread;
 
 fn check_prime(number: i32) -> bool {
     let mut prime = true;
@@ -12,7 +12,7 @@ fn check_prime(number: i32) -> bool {
 }
 
 fn main() {
-    let max = 100000;
+    let max = 10000000;
     let pool: Arc<Vec<i32>> = Arc::new((1..max).collect());
     let index = Arc::new(Mutex::new(0));
     //let primes = Mutex::new(vec![]);
@@ -33,7 +33,7 @@ fn main() {
         });
         threads.push(handle);
         while threads.len() > 15{
-            let th = threads.pop().unwrap();
+            let th = threads.remove(0);
             th.join().unwrap();
         }
     }
