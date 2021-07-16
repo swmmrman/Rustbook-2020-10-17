@@ -20,8 +20,8 @@ fn main() {
 
     for _ in 0..max {
         let index = Arc::clone(&index);
+        let pool = Arc::clone(&pool);
         let handle = thread::spawn(move || {
-            let pool = Arc::clone(&pool);
             let mut cur_index = index.lock().unwrap();
             let num = pool[*cur_index];
             if num % 2 != 0 {
