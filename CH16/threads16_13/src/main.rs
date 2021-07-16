@@ -12,13 +12,13 @@ fn check_prime(number: i32) -> bool {
 }
 
 fn main() {
-    let max = 500;
+    let max = 4000;
     let pool: Arc<Vec<i32>> = Arc::new((1..max).collect());
     let index = Arc::new(Mutex::new(0));
     //let primes = Mutex::new(vec![]);
     let mut threads = vec![];
 
-    for _ in 0..max {
+    for _ in 0..max-1 {
         let index = Arc::clone(&index);
         let pool = Arc::clone(&pool);
         let handle = thread::spawn(move || {
@@ -32,5 +32,8 @@ fn main() {
             *cur_index += 1;
         });
         threads.push(handle);
+    }
+    for thread in threads:
+        thread.join();
     }
 }
