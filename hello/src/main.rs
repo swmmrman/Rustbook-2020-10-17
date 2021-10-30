@@ -18,9 +18,13 @@ fn handle_connection(mut stream: TcpStream) {
     stream.read(&mut buffer).unwrap();
 
     let get = b"GET / HTTP/1.1\r\n";
+    let get2 = b"GET /css/main.css HTTP/1.1\r\n";
 
     let (status_line, filename) = if buffer.starts_with(get) {
         ("HTTP/1.1 200 OK", "index.html")
+    }
+    else if buffer.starts_with(get2){
+        ("HTTP/1.1 200 OK", "css/main.css")
     }
     else {
         ("HTTP/1.1 404 File Not Found", "errors/404.html")
