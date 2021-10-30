@@ -1,3 +1,4 @@
+use hello::ThreadPool;
 use std::fs;
 use std::time::Duration;
 use std::thread;
