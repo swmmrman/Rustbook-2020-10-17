@@ -1,4 +1,7 @@
-pub struct ThreadPool;
+use std::thread;
+pub struct ThreadPool {
+    workers: Vec<Worker>
+}
 
 impl ThreadPool {
     /// Create a new ThreadPool.
@@ -10,7 +13,14 @@ impl ThreadPool {
     /// The new function will panic if the size is 0.
     pub fn new(size: usize) -> ThreadPool {
         assert!(size > 0);
-        ThreadPool
+
+        let mut workers = Vec::with_capacity(size);
+
+        for id in 0..size {
+            workers.push(Worker::new(id));
+        }
+
+        ThreadPool { workers }
     }
     pub fn execute<F>(&self, f: F)
     where
@@ -18,4 +28,17 @@ impl ThreadPool {
         {
 
         }
+}
+
+struct Worker {
+    id: usize,
+    thread: thread::JoinHandle<()>,
+}
+
+impl Worker {
+    fn new(id: usize) -> Worker {
+        let thread = thread::spawn(|| {});
+
+        Worker {id, thread }
+    }
 }
