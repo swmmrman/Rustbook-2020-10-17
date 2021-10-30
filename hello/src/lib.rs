@@ -3,13 +3,24 @@ use std::sync::mpsc;
 use std::sync::Arc;
 use std::sync::Mutex;
 
+enum Message {
+    NewJob(Job),
+    Terminate,
+}
+
 pub struct ThreadPool {
     workers: Vec<Worker>,
-    sender: mpsc::Sender<Job>,
+    sender: mpsc::Sender<Message>,
 }
 
 impl Drop for ThreadPool {
     fn drop(&mut self) {
+        println!("Terminating all workers.");
+
+        for _ in &self.workers {
+            self.sender.send(Message::Terminate).unwrap();
+        }
+
         for worker in &mut self.workers {
             println!("Shuting down worker: {}", worker.id);
 
@@ -40,6 +51,7 @@ impl ThreadPool {
         let mut workers = Vec::with_capacity(size);
 
         for id in 0..size {
+            println!("Spawning worker {}", id);
             workers.push(Worker::new(id, Arc::clone(&receiver)));
         }
 
@@ -51,7 +63,7 @@ impl ThreadPool {
     {
         let job = Box::new(f);
 
-        self.sender.send(job).unwrap()
+        self.sender.send(Message::NewJob(job)).unwrap()
     }
 }
 
@@ -61,13 +73,22 @@ struct Worker {
 }
 
 impl Worker {
-    fn new(id: usize, receiver: Arc<Mutex<mpsc::Receiver<Job>>>) -> Worker {
+    fn new(id: usize, receiver: Arc<Mutex<mpsc::Receiver<Message>>>) -> Worker {
         let thread = thread::spawn(move || loop {
-            let job = receiver.lock().unwrap().recv().unwrap();
+            let message = receiver.lock().unwrap().recv().unwrap();
 
-            println!("Worker {} got a job; executing.", id);
+            match message {
+                Message::NewJob(job) => {
+                    println!("Worker {} got a job; executing.", id);
 
-            job();
+                    job();
+                }
+                Message::Terminate => {
+                    println!("Woker {} was told to terminate.", id);
+
+                    break;
+                }
+            }
         });
 
         Worker {
