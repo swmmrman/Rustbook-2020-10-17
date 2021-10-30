@@ -32,6 +32,14 @@ fn handle_connection(mut stream: TcpStream) {
         stream.flush().unwrap();
     }
     else {
-        //Nothing here.
+        let contents = fs::read_to_string("errors/404.html").unwrap();
+
+        let response = format!(
+            "HTTP/1.1 404 File Not Found\r\nContent-Length {}\r\n\r\n{}",
+            contents.len(),
+            contents
+        );
+        stream.write(response.as_bytes()).unwrap();
+        stream.flush().unwrap()
     }
 }
