@@ -9,13 +9,12 @@ fn main() {
         let stream = stream.unwrap();
 
         handle_connection(stream);
-        println!("Connection established!");
     }
 }
 
 fn handle_connection(mut stream: TcpStream) {
     let mut buffer = [0; 1024];
+
     stream.read(&mut buffer).unwrap();
 
-    println!("Request: {}", String::from_utf8_lossy(&buffer[..]));
 }
